@@ -1,6 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 import * as codecommit from "aws-cdk-lib/aws-codecommit";
 import { Construct } from "constructs";
+import { WorkshopPipelineStage } from "./pipeline-stage";
 import {
   CodeBuildStep,
   CodePipeline,
@@ -23,5 +24,8 @@ export class WorkshopPipelineStack extends cdk.Stack {
         commands: ["npm ci", "npm run build", "npx cdk synth"],
       }),
     });
+
+    const deploy = new WorkshopPipelineStage(this, "Deploy");
+    const deploystage = pipeline.addStage(deploy);
   }
 }
