@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            npm i -g aws-cdk
+            sudo npm i -g aws-cdk
             npm i
 
       - run: cdk deploy
